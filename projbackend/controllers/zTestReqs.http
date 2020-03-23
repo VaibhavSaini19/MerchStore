@@ -1,7 +1,9 @@
 ###
 GET http://localhost:5000/api/
 
-###-----------------------------------      SIGN UP     -----------------------------------
+# ============================================       AUTH        ===========================================================
+
+###-----------------------------------      SIGN UP     
 POST http://localhost:5000/api/signup
 Content-Type: application/json
 
@@ -18,7 +20,7 @@ Content-Type: application/json
 #   "email": "b@b.com"
 # }
 
-###-----------------------------------      SIGN IN     -----------------------------------
+###-----------------------------------      SIGN IN     
 POST http://localhost:5000/api/signin
 Content-Type: application/json
 
@@ -37,6 +39,19 @@ Content-Type: application/json
 #   }
 # }
 
+
+###----------------------------------- AUTHORIZATION (Protected Test Route) -----------------------------------
+GET http://localhost:5000/api/testroute
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTc4NTMwN2VkMWQwOTMyODg3Yjk4NzEiLCJpYXQiOjE1ODQ5NDM4OTl9.1u5Th0B8TDPNzvwpZeXwZS4yoW62i6nU7nyhgOVuZzc
+
+{
+    "email": "a@a.com",
+    "password": "bbb"
+}
+
+# ============================================       USER        ===========================================================
+
 ###----------------------------------- GET USER -----------------------------------
 GET http://localhost:5000/api/user/5e785307ed1d0932887b9871
 Content-Type: application/json
@@ -49,15 +64,76 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTc4NTMwN2VkMWQwOTMyODg3Yjk4NzEiLCJpYXQiOjE1ODQ5NDM4OTl9.1u5Th0B8TDPNzvwpZeXwZS4yoW62i6nU7nyhgOVuZzc
 
 {
-    "lastname": "bbb"
+    "role": 1
 }
 
-###----------------------------------- AUTHORIZATION (Protected Test Route) -----------------------------------
-GET http://localhost:5000/api/testroute
+
+# ============================================       CATEGORY        ===========================================================
+
+###-----------------------------------      CREATE CATEGORY     
+POST http://localhost:5000/api/category/create/5e785307ed1d0932887b9871
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTc4NTMwN2VkMWQwOTMyODg3Yjk4NzEiLCJpYXQiOjE1ODQ5NDM4OTl9.1u5Th0B8TDPNzvwpZeXwZS4yoW62i6nU7nyhgOVuZzc
 
 {
-    "email": "a@a.com",
-    "password": "bbb"
+    "name": "Winter"
+}
+
+# {
+#   "category": {
+#     "_id": "5e789a04ff3e152530475d67",
+#     "name": "Summer",
+#     "createdAt": "2020-03-23T11:14:12.718Z",
+#     "updatedAt": "2020-03-23T11:14:12.718Z",
+#     "__v": 0
+#   }
+# }
+
+###-----------------------------------      UPDATE CATEGORY
+PUT http://localhost:5000/api/category/5e789a04ff3e152530475d67/5e785307ed1d0932887b9871
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTc4NTMwN2VkMWQwOTMyODg3Yjk4NzEiLCJpYXQiOjE1ODQ5NDM4OTl9.1u5Th0B8TDPNzvwpZeXwZS4yoW62i6nU7nyhgOVuZzc
+
+{
+    "name": "Winter Tees"
+}
+
+# {
+#   "_id": "5e789a04ff3e152530475d67",
+#   "name": "Winter Tees",
+#   "createdAt": "2020-03-23T11:14:12.718Z",
+#   "updatedAt": "2020-03-23T11:16:03.821Z",
+#   "__v": 0
+# }
+
+###-----------------------------------      DELETE CATEGORY
+DELETE http://localhost:5000/api/category/5e789ab6ff3e152530475d69/5e785307ed1d0932887b9871
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTc4NTMwN2VkMWQwOTMyODg3Yjk4NzEiLCJpYXQiOjE1ODQ5NDM4OTl9.1u5Th0B8TDPNzvwpZeXwZS4yoW62i6nU7nyhgOVuZzc
+
+{
+    "name": "Delete"
+}
+
+# {
+#   "_id": "5e789a04ff3e152530475d67",
+#   "name": "Winter Tees",
+#   "createdAt": "2020-03-23T11:14:12.718Z",
+#   "updatedAt": "2020-03-23T11:16:03.821Z",
+#   "__v": 0
+# }
+
+# ============================================       PRODUCTs        ===========================================================
+
+###-----------------------------------      CREATE PRODUCT
+POST http://localhost:5000/api/product/create/5e785307ed1d0932887b9871
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTc4NTMwN2VkMWQwOTMyODg3Yjk4NzEiLCJpYXQiOjE1ODQ5NDM4OTl9.1u5Th0B8TDPNzvwpZeXwZS4yoW62i6nU7nyhgOVuZzc
+
+{
+    "name": "I write codes",
+    "description": "A classic shirt",
+    "price": 10,
+    "category": "5e789a04ff3e152530475d67",
+    "stock": 27,
+    "photo": 
 }

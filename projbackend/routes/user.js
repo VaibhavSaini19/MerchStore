@@ -6,10 +6,9 @@ const { getUserById, getUser, updateUser, userPurchaseList } = require("../contr
 
 router.param("userId", getUserById);
 
-router.get("/user/:userId", isSignedIn, isAuthenticated, getUser);
-
 router.put("/user/:userId", isSignedIn, isAuthenticated, updateUser);
 
+router.get("/user/:userId", isSignedIn, isAuthenticated, getUser);
 router.get("/orders/user/:userId", isSignedIn, isAuthenticated, userPurchaseList);
 
 module.exports = router;
