@@ -1,0 +1,63 @@
+###
+GET http://localhost:5000/api/
+
+###-----------------------------------      SIGN UP     -----------------------------------
+POST http://localhost:5000/api/signup
+Content-Type: application/json
+
+{
+    "name": "bbb",
+    "lastname": "b",
+    "email": "b@b.com",
+    "password": "bbb"
+}
+
+# {
+#   "id": "5e785307ed1d0932887b9871",
+#   "name": "bbb",
+#   "email": "b@b.com"
+# }
+
+###-----------------------------------      SIGN IN     -----------------------------------
+POST http://localhost:5000/api/signin
+Content-Type: application/json
+
+{
+    "email": "b@b.com",
+    "password": "bbb"
+}
+
+# {
+#   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTc4NTMwN2VkMWQwOTMyODg3Yjk4NzEiLCJpYXQiOjE1ODQ5NDM4OTl9.1u5Th0B8TDPNzvwpZeXwZS4yoW62i6nU7nyhgOVuZzc",
+#   "user": {
+#     "_id": "5e785307ed1d0932887b9871",
+#     "name": "bbb",
+#     "email": "b@b.com",
+#     "role": 0
+#   }
+# }
+
+###----------------------------------- GET USER -----------------------------------
+GET http://localhost:5000/api/user/5e785307ed1d0932887b9871
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTc4NTMwN2VkMWQwOTMyODg3Yjk4NzEiLCJpYXQiOjE1ODQ5NDM4OTl9.1u5Th0B8TDPNzvwpZeXwZS4yoW62i6nU7nyhgOVuZzc
+
+
+###----------------------------------- UPDATE USER -----------------------------------
+PUT http://localhost:5000/api/user/5e785307ed1d0932887b9871
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTc4NTMwN2VkMWQwOTMyODg3Yjk4NzEiLCJpYXQiOjE1ODQ5NDM4OTl9.1u5Th0B8TDPNzvwpZeXwZS4yoW62i6nU7nyhgOVuZzc
+
+{
+    "lastname": "bbb"
+}
+
+###----------------------------------- AUTHORIZATION (Protected Test Route) -----------------------------------
+GET http://localhost:5000/api/testroute
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTc4NTMwN2VkMWQwOTMyODg3Yjk4NzEiLCJpYXQiOjE1ODQ5NDM4OTl9.1u5Th0B8TDPNzvwpZeXwZS4yoW62i6nU7nyhgOVuZzc
+
+{
+    "email": "a@a.com",
+    "password": "bbb"
+}

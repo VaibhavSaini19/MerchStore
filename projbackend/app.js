@@ -4,8 +4,9 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
-
-const authRoutes = require('./routes/auth')
+const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/user");
+const categoryRoutes = require("./routes/category");
 
 /*--------------------------------Create an HTTP server to handle responses--------------------------------*/
 // Connect to DB
@@ -23,7 +24,9 @@ app.use(cookieParser());
 app.use(cors());
 
 // Routes
-app.use('/api', authRoutes)
+app.use("/api", authRoutes);
+app.use("/api", userRoutes);
+app.use("/api", categoryRoutes);
 
 // Listen to req
 const PORT = process.env.PORT || 5000;
