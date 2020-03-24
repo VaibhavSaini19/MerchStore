@@ -25,6 +25,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
 
+// Logger
+app.use("/", (req, res, next) => {
+	console.log(`${req.protocol}://${req.get("host")}${req.originalUrl}`);
+	next();
+});
+
 // Routes
 app.use("/api", authRoutes);
 app.use("/api", userRoutes);
