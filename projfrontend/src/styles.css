@@ -6,11 +6,11 @@
 
 body {
   background: #343A40;
+  min-height: 100vh;
+} 
+#root{
+  min-height: 100vh;
 }
-
-footer{
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+#base{
+  min-height: 100vh;
 }

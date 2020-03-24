@@ -8,7 +8,7 @@ const Base = ({
 	children
 }) => {
 	return (
-		<div>
+		<div id="base">
 			<Menu />
 			<div className="container-fluid">
 				<div className="jumbotron bg-dark text-white text-center py-1">
@@ -17,7 +17,7 @@ const Base = ({
 				</div>
 				<div className={className}>{children}</div>
 			</div>
-			<footer className="footer bg-dark mt-auto py-1">
+			<footer className="footer bg-dark mt-5 pt-3">
 				<div className="container-fluid bg-success text-white text-center py-3">
 					<div className="row d-flex flex-row justify-content-around align-items-center">
 						<h4>If you have any question, feel free to reach out</h4>

@@ -6,8 +6,8 @@ import { signin, authenticate, isAuthenticated } from "../auth/helper";
 
 const Signin = () => {
 	const [values, setValues] = useState({
-		email: "",
-		password: "",
+		email: "b@b.com",
+		password: "bbb",
 		error: "",
 		loading: false,
 		didRedirect: false
@@ -22,32 +22,32 @@ const Signin = () => {
 
 	const onSubmit = event => {
 		event.preventDefault();
-        setValues({ ...values, error: false, loading: true });
+		setValues({ ...values, error: false, loading: true });
 		signin({ email, password })
 			.then(data => {
-                if(data.error){
-            		setValues({ ...values, error: data.error, loading: false });
-                }else{
-                    authenticate(data, () => {
-                        setValues({...values, didRedirect: true})
-                    })
-                }
-            })
+				if (data.error) {
+					setValues({ ...values, error: data.error, loading: false });
+				} else {
+					authenticate(data, () => {
+						setValues({ ...values, didRedirect: true });
+					});
+				}
+			})
 			.catch(err => console.log("Sigin in request failed: ", err));
-    };
-    
-    const performRedirect = () => {
-        if(didRedirect){
-            if(user && user.role === 1){
-                return <p>Redir to admin dashboard</p>
-            }else{
-                return <p>Redir to user dashboard</p>
-            }
-        }
-        if(isAuthenticated()){
-            return <Redirect to="/" />
-        }
-    }
+	};
+
+	const performRedirect = () => {
+		if (didRedirect) {
+			if (user && user.role === 1) {
+				return <Redirect to="/admin/dashboard"/>
+			} else {
+				return <Redirect to="/user/dashboard"/>				
+			}
+		}
+		if (isAuthenticated()) {
+			return <Redirect to="/" />;
+		}
+	};
 
 	const signInForm = () => {
 		return (
@@ -88,10 +88,10 @@ const Signin = () => {
 	const loadingMsg = () => {
 		return (
 			loading && (
-                <div className="alert alert-info">
-                    <h2>Loading...</h2>
-                </div>
-            )
+				<div className="alert alert-info">
+					<h2>Loading...</h2>
+				</div>
+			)
 		);
 	};
 
@@ -109,11 +109,11 @@ const Signin = () => {
 
 	return (
 		<Base title="Sign In page" description="A page for user to sign In">
-            {loadingMsg()}
-            {errorMsg()}
-            {signInForm()}
-            {performRedirect()}
-            <p className="text-white text-center">{JSON.stringify(values)}</p>
+			{loadingMsg()}
+			{errorMsg()}
+			{signInForm()}
+			{performRedirect()}
+			{/* <p className="text-white text-center">{JSON.stringify(values)}</p> */}
 		</Base>
 	);
 };
