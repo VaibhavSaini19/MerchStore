@@ -13,8 +13,8 @@ exports.getProductById = (req, res, next, id) => {
 				});
 			}
 			req.product = product;
+			next();
 		});
-	next();
 };
 
 exports.createProduct = (req, res) => {
@@ -82,7 +82,7 @@ exports.deleteProduct = (req, res) => {
 
 exports.updateProduct = (req, res) => {
 	let form = new formiadble.IncomingForm();
-	from.keepExtensions = true;
+	form.keepExtensions = true;
 
 	form.parse(req, (err, fields, file) => {
 		if (err) {
