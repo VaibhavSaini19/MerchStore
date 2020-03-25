@@ -70,7 +70,7 @@ exports.pushOrderInPurchaseList = (req, res, next) => {
 	User.findByIdAndUpdate(
 		{ _id: req.profile._id },
 		{ $push: { purchases: purchases } },
-		{ new: true },
+		{ new: true, useFindAndModify: false },
 		(err, purchases) => {
 			if (err) {
 				return res.status(400).json({
