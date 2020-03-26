@@ -1,71 +1,82 @@
 import React, { Fragment } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import { signout, isAuthenticated } from "../auth/helper";
 
 const currentTab = (history, path) => {
 	if (history.location.pathname === path) {
 		return { color: "#2ecc72" };
 	} else {
-		return { color: "#fff" };
+		return { color: "#000" };
 	}
 };
 
 const Menu = ({ history }) => {
 	return (
-		<ul className="nav nav-tabs bg-dark">
-			<li className="nav-item">
-				<Link style={currentTab(history, "/")} className="nav-link" to="/">
-					Home
-				</Link>
-			</li>
-			<li className="nav-item">
-				<Link style={currentTab(history, "/cart")} className="nav-link" to="/cart">
-					Cart
-				</Link>
-			</li>
-			{isAuthenticated() && isAuthenticated().user.role === 0 && (
-				<li className="nav-item">
-					<Link style={currentTab(history, "/user/dashboard")} className="nav-link" to="/user/dashboard">
-						Dashboard
-					</Link>
+		<nav className="navbar navbar-dark bg-dark sticky-top justify-content-between py-3">
+			<a className="navbar-brand text-white">Navbar</a>
+			<ul className="nav bg-dark">
+				<li className="nav-item mx-2">
+					<NavLink activeClass="active" exact className="nav-link text-white font-weight-bold" to="/">
+						Home
+					</NavLink>
 				</li>
-			)}
-			{isAuthenticated() && isAuthenticated().user.role === 1 && (
-				<li className="nav-item">
-					<Link style={currentTab(history, "/admin/dashboard")} className="nav-link" to="/admin/dashboard">
-						Admin Dashboard
-					</Link>
+				<li className="nav-item mx-2">
+					<NavLink activeClass="active" exact className="nav-link text-white font-weight-bold" to="/cart">
+						Cart
+					</NavLink>
 				</li>
-			)}
-			{!isAuthenticated() && (
-				<Fragment>
-					<li className="nav-item">
-						<Link style={currentTab(history, "/signup")} className="nav-link" to="/signup">
-							Sign Up
-						</Link>
+				{isAuthenticated() && isAuthenticated().user.role === 0 && (
+					<li className="nav-item mx-2">
+						<NavLink
+							activeClass="active" exact
+							className="nav-link text-white font-weight-bold"
+							to="/user/dashboard"
+						>
+							Dashboard
+						</NavLink>
 					</li>
-					<li className="nav-item">
-						<Link style={currentTab(history, "/signin")} className="nav-link" to="/signin">
-							Sign In
-						</Link>
+				)}
+				{isAuthenticated() && isAuthenticated().user.role === 1 && (
+					<li className="nav-item mx-2">
+						<NavLink
+							activeClass="active" exact
+							className="nav-link text-white font-weight-bold"
+							to="/admin/dashboard"
+						>
+							Admin Dashboard
+						</NavLink>
 					</li>
-				</Fragment>
-			)}
-			{isAuthenticated() && (
-				<li className="nav-item">
-					<span
-						className="nav-link text-warning"
-						onClick={() => {
-							signout(() => {
-								history.push("/");
-							});
-						}}
-					>
-						Sign Out
-					</span>
-				</li>
-			)}
-		</ul>
+				)}
+				{!isAuthenticated() && (
+					<Fragment>
+						<li className="nav-item mx-2">
+							<NavLink activeClass="active" exact className="nav-link text-white font-weight-bold" to="/signup">
+								Sign Up
+							</NavLink>
+						</li>
+						<li className="nav-item mx-2">
+							<NavLink activeClass="active" exact className="nav-link text-white font-weight-bold btn btn-primary rounded text-white" to="/signin">
+								Sign In
+							</NavLink>
+						</li>
+					</Fragment>
+				)}
+				{isAuthenticated() && (
+					<li className="nav-item mx-2">
+						<span
+							className="nav-link text-white font-weight-bold"
+							onClick={() => {
+								signout(() => {
+									history.push("/");
+								});
+							}}
+						>
+							Sign Out
+						</span>
+					</li>
+				)}
+			</ul>
+		</nav>
 	);
 };
 

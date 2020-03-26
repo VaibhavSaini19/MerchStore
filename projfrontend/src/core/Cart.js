@@ -35,16 +35,25 @@ const Cart = () => {
 
 	return (
 		<Base title="Cart page" description="Ready to check out">
-			<div className="row text-center">
+			<div className="row h-100 text-center justify-content-center align-items-center">
 				<div className="col-4 offset-1">{
-					products.length > 0 ? loadAllProducts(products) : <h3>No Products in cart</h3>
+					products.length > 0 ? 
+					loadAllProducts(products) : 
+					<div className="">
+						<h3 className="mb-2">Here's your cart</h3>
+						<div className="imgContainer"><img src="./imgs/empty.png" alt=""/></div>
+						<h3 className="mt-3">Oh wait...its EMPTY!</h3>
+					</div>
 				}</div>
 				<div className="col-6 offset-1 text-center">
 					{products.length > 0 ? (
 							<Payment products={products} setReload={setReload}/>
 						)
 						: (
-							<h2>Add something in cart please</h2>
+							<div className="">
+								<h2>Add something in cart please</h2>
+								<img src="./imgs/empty2.jpg" alt=""/>
+							</div>
 						)
 					}
 				</div>

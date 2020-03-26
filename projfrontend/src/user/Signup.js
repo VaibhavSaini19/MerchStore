@@ -33,46 +33,57 @@ const Signup = () => {
 
 	const signUpForm = () => {
 		return (
-			<div className="row">
-				<div className="col-md-6 offset-sm-3 text-left">
-					<form action="">
-						<div className="form-group">
-							<label htmlFor="" className="text-light">
-								Name
-							</label>
-							<input
-								className="form-control"
-								onChange={handleChange("name")}
-								type="text"
-								value={name}
-							/>
+			<div className="">
+				<div className="row m-0 justify-content-center align-items-center">
+					<div className="col-6">
+						<div className="imgContainer">
+							<img src="./imgs/signup.jpg" alt="signup"/>
 						</div>
-						<div className="form-group">
-							<label htmlFor="" className="text-light">
-								Email
-							</label>
-							<input
-								className="form-control"
-								onChange={handleChange("email")}
-								type="email"
-								value={email}
-							/>
-						</div>
-						<div className="form-group">
-							<label htmlFor="" className="text-light">
-								Password
-							</label>
-							<input
-								className="form-control"
-								onChange={handleChange("password")}
-								type="password"
-								value={password}
-							/>
-						</div>
-						<button onClick={onSubmit} className="btn btn-success btn-block">
-							Submit
-						</button>
-					</form>
+					</div>
+					<div className="col-md-6 text-left">
+						<h2 className="font-weight-bold mb-5">Lets get you all set up</h2>
+						<form className="mt-5" action="">
+							<div className="form-group">
+								<label htmlFor="" className="text-dark">
+									Name
+								</label>
+								<input
+									className="form-control"
+									onChange={handleChange("name")}
+									type="text"
+									value={name}
+									placeholder="John Doe"
+								/>
+							</div>
+							<div className="form-group">
+								<label htmlFor="" className="text-dark">
+									Email
+								</label>
+								<input
+									className="form-control"
+									onChange={handleChange("email")}
+									type="email"
+									value={email}
+									placeholder="johnDoe@gmail.com"
+								/>
+							</div>
+							<div className="form-group">
+								<label htmlFor="" className="text-dark">
+									Password
+								</label>
+								<input
+									className="form-control"
+									onChange={handleChange("password")}
+									type="password"
+									value={password}
+									placeholder="***"
+								/>
+							</div>
+							<button onClick={onSubmit} className="btn btn-success btn-block">
+								Submit
+							</button>
+						</form>
+					</div>
 				</div>
 			</div>
 		);

@@ -2,30 +2,42 @@ import React from "react";
 import Menu from "./Menu";
 
 const Base = ({
-	title = "My Title",
-	description = "My Description",
-	className = "bg-dark text-white py-4",
 	children
 }) => {
 	return (
 		<div id="base">
 			<Menu />
-			<div className="container-fluid">
-				<div className="jumbotron bg-dark text-white text-center py-1">
-					<h2 className="display-4">{title}</h2>
-					<p className="lead">{description}</p>
-				</div>
-				<div className={className}>{children}</div>
+			<div className="content">
+				<div>{children}</div>
 			</div>
-			<footer className="footer bg-dark mt-5 pt-3">
-				<div className="container-fluid bg-success text-white text-center py-3">
-					<div className="row d-flex flex-row justify-content-around align-items-center">
-						<h4>If you have any question, feel free to reach out</h4>
-						<button className="btn btn-lg btn-warning rounded">Contact Use</button>
+			<footer className="footer bg-light mt-5 pt-3">
+				<div className="container py-3">
+					<h2 className="font-weight-bold text-center mb-3">Contact Us</h2>
+					<div className="row">
+						<div className="col-6 justify-content-center align-items-center">
+							<form>
+								<div className="form-group">
+									<label htmlFor="name">Full Name</label>
+									<input type="text" className="form-control" id="name" placeholder="Enter name" />
+								</div>
+								<div className="form-group">
+									<label htmlFor="email">Email address</label>
+									<input type="email" className="form-control" id="email" placeholder="Enter email" />
+									<small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+								</div>
+								<div className="form-group">
+									<label htmlFor="desc">What would you like to know</label>
+									<textarea className="form-control" id="desc" rows="6" placeholder="Describe your query here"></textarea>
+								</div>
+								<button type="submit" className="btn btn-lg btn-block btn-primary">Submit</button>
+							</form>
+						</div>
+						<div className="col-6 justify-content-center align-items-center">
+							<div className="imgContainer">
+								<img src="./imgs/contact2.jpg" alt="contact"/>
+							</div>
+						</div>
 					</div>
-				</div>
-				<div className="container">
-					<span className="text-muted">An amazing <span className="text-white">Merch</span> Store</span>
 				</div>
 			</footer>
 		</div>

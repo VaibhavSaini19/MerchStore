@@ -51,35 +51,43 @@ const Signin = () => {
 
 	const signInForm = () => {
 		return (
-			<div className="row">
-				<div className="col-md-6 offset-sm-3 text-left">
-					<form action="">
-						<div className="form-group">
-							<label htmlFor="" className="text-light">
-								Email
-							</label>
-							<input
-								onChange={handleChange("email")}
-								className="form-control"
-								type="email"
-								value={email}
-							/>
+			<div className="">
+				<div className="row m-0 justify-content-center align-items-center">
+					<div className="col-6 ">
+							<div className="imgContainer" style={{width: '40em'}}>
+								<img src="./imgs/login.jpg" alt="login"/>
+							</div>
 						</div>
-						<div className="form-group">
-							<label htmlFor="" className="text-light">
-								Password
-							</label>
-							<input
-								onChange={handleChange("password")}
-								className="form-control"
-								type="password"
-								value={password}
-							/>
-						</div>
-						<button onClick={onSubmit} className="btn btn-success btn-block">
-							Submit
-						</button>
-					</form>
+					<div className="col-6 h-100 text-left">
+						<h2 className="font-weight-bold mb-5">Welcome Back,</h2>
+						<form className="mb-5" action="">
+							<div className="form-group">
+								<label htmlFor="" className="text-dark">
+									Email
+								</label>
+								<input
+									onChange={handleChange("email")}
+									className="form-control"
+									type="email"
+									value={email}
+								/>
+							</div>
+							<div className="form-group">
+								<label htmlFor="" className="text-dark">
+									Password
+								</label>
+								<input
+									onChange={handleChange("password")}
+									className="form-control"
+									type="password"
+									value={password}
+								/>
+							</div>
+							<button onClick={onSubmit} className="btn btn-success btn-block">
+								Submit
+							</button>
+						</form>
+					</div>
 				</div>
 			</div>
 		);
@@ -108,7 +116,7 @@ const Signin = () => {
 	};
 
 	return (
-		<Base title="Sign In page" description="A page for user to sign In">
+		<Base>
 			{loadingMsg()}
 			{errorMsg()}
 			{signInForm()}
