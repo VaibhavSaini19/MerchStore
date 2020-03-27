@@ -25,7 +25,7 @@ export const updateCategory = (categoryId, userId, token, category) => {
 			"Content-Type": "application/json",
 			Authorization: `Bearer ${token}`
 		},
-		body: JSON.stringify({category})
+		body: JSON.stringify({ category })
 	})
 		.then(res => res.json())
 		.catch(err => console.log(err));
@@ -58,7 +58,6 @@ export const deleteCategory = (categoryId, userId, token) => {
 		.then(res => res.json())
 		.catch(err => console.log(err));
 };
-
 
 // Product calls
 
@@ -114,5 +113,17 @@ export const deleteProduct = (productId, userId, token) => {
 		}
 	})
 		.then(res => res.json())
+		.catch(err => console.log(err));
+};
+
+// Order calls
+
+export const getAllOrders = userId => {
+	return fetch(`${API}/order/all/${userId}`, {
+		method: "GET"
+	})
+		.then(res => {
+			return res.json();
+		})
 		.catch(err => console.log(err));
 };
