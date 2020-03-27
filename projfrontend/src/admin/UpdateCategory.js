@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Base from "../core/Base";
-import { Link } from "react-router-dom";
 import { getCategory, updateCategory } from "./helper/adminapicall";
 import { isAuthenticated } from "../auth/helper";
+import backBtn from "./helper/backBtn";
+import adminLeftSide from "./helper/adminLeftSide";
 
 const UpdateCategory  = ({match}) => {
 	const { user, token } = isAuthenticated();
@@ -33,16 +34,6 @@ const UpdateCategory  = ({match}) => {
 			}
 		})
     };
-    
-	const backBtn = () => {
-		return (
-			<div className="mt-5">
-				<Link to="/admin/dashboard" className="btn btn-sm btn-outline-info rounded mb-3">
-					Home
-				</Link>
-			</div>
-		);
-	};
 
 	const onSubmit = e => {
 		e.preventDefault();
@@ -72,7 +63,7 @@ const UpdateCategory  = ({match}) => {
 		return (
 			<form action="">
 				<div className="form-group">
-					<p className="lead">Enter the category</p>
+					<p className="lead">Enter new name:</p>
 					<input
 						onChange={handleChange("name")}
 						name="name"
@@ -118,17 +109,25 @@ const UpdateCategory  = ({match}) => {
 	}, []);
 
 	return (
-			<Base
-				title="Welcome to product creation section"
-				description="Add a product"
-				className="container bg-info p-4"
-			>
-				<div className="row bg-white rounded">
-					<div className="col-md-8 offset-md-2">
-                        {successMsg()}
-                        {errorMsg()}
-						{backBtn()}
-                        {updateCategoryForm()}
+			<Base>
+				<div className="container my-5">
+					<div className="row">
+						<div className="col-3">
+							{adminLeftSide()}
+						</div>
+						<div className="col-9">
+							<div className="card mb-4">
+								<div className="card-header font-weight-bold">
+									Update category
+								</div>
+								<div className="card-body">
+									{successMsg()}
+									{errorMsg()}
+									{backBtn()}
+									{updateCategoryForm()}
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</Base>

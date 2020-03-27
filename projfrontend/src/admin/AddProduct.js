@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Base from "../core/Base";
-import { Link } from "react-router-dom";
+import backBtn from './helper/backBtn';
 import { getAllCategories, createProduct } from "./helper/adminapicall";
 import { isAuthenticated } from "../auth/helper";
+import adminLeftSide from "./helper/adminLeftSide";
 
 const AddProduct = () => {
 	const { user, token } = isAuthenticated();
@@ -44,16 +45,6 @@ const AddProduct = () => {
 				setValues({ ...values, categories: data, formData: new FormData()});
 			}
 		});
-	};
-
-	const backBtn = () => {
-		return (
-			<div className="mt-5">
-				<Link to="/admin/dashboard" className="btn btn-sm btn-outline-info rounded mb-3">
-					Home
-				</Link>
-			</div>
-		);
 	};
 
 	const onSubmit = e => {
@@ -153,7 +144,7 @@ const AddProduct = () => {
 				</div>
 
 				<button type="submit" onClick={onSubmit} className="btn btn-info rounded mb-3">
-					Create Product
+					<i className="fas fa-plus">&emsp;</i>Create Product
 				</button>
 			</form>
 		);
@@ -186,22 +177,28 @@ const AddProduct = () => {
 	}, []);
 
 	return (
-		<div>
-			<Base
-				title="Welcome to product creation section"
-				description="Add a product"
-				className="container bg-info p-4"
-			>
+		<Base>
+			<div className="container my-5">
 				<div className="row bg-white rounded">
-					<div className="col-md-8 offset-md-2">
-                        {successMsg()}
-                        {errorMsg()}
-						{backBtn()}
-						{createProductForm()}
+					<div className="col-3">
+						{adminLeftSide()}
+					</div>
+					<div className="col-9">
+						<div className="card mb-4">
+							<div className="card-header font-weight-bold">
+								Add a new product here
+							</div>
+							<div className="card-body">
+								{successMsg()}
+								{errorMsg()}
+								{backBtn()}
+								{createProductForm()}
+							</div>
+						</div>
 					</div>
 				</div>
-			</Base>
-		</div>
+			</div>
+		</Base>
 	);
 };
 

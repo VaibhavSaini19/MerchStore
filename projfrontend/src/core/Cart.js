@@ -15,8 +15,8 @@ const Cart = () => {
 
 	const loadAllProducts = (products) => {
 		return (
-			<div>
-				<h2>All cart products</h2>
+			<div className="product">
+				<h2 className="font-weight-bold">Your cart</h2>
 				{products.map((product, index) => {
 					return (
 						<Card
@@ -34,28 +34,30 @@ const Cart = () => {
 	};
 
 	return (
-		<Base title="Cart page" description="Ready to check out">
-			<div className="row h-100 text-center justify-content-center align-items-center">
-				<div className="col-4 offset-1">{
-					products.length > 0 ? 
-					loadAllProducts(products) : 
-					<div className="">
-						<h3 className="mb-2">Here's your cart</h3>
-						<div className="imgContainer"><img src="./imgs/empty.png" alt=""/></div>
-						<h3 className="mt-3">Oh wait...its EMPTY!</h3>
+		<Base>
+			<div className="container rounded border py-5 my-5">
+				<div className="row h-100 text-center justify-content-center align-items-center">
+					<div className="col-4">{
+						products.length > 0 ? 
+						loadAllProducts(products) : 
+						<div className="">
+							<h3 className="mb-2">Here's your cart</h3>
+							<div className="imgContainer"><img src="./imgs/empty.png" alt=""/></div>
+							<h3 className="mt-3">Oh wait...its EMPTY!</h3>
+						</div>
+					}</div>
+					<div className="col-6 text-center">
+						{products.length > 0 ? (
+								<Payment products={products} setReload={setReload}/>
+							)
+							: (
+								<div className="">
+									<h2>Add something in cart please</h2>
+									<img src="./imgs/empty2.jpg" alt=""/>
+								</div>
+							)
+						}
 					</div>
-				}</div>
-				<div className="col-6 offset-1 text-center">
-					{products.length > 0 ? (
-							<Payment products={products} setReload={setReload}/>
-						)
-						: (
-							<div className="">
-								<h2>Add something in cart please</h2>
-								<img src="./imgs/empty2.jpg" alt=""/>
-							</div>
-						)
-					}
 				</div>
 			</div>
 		</Base>

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Base from "../core/Base";
-import { Link } from "react-router-dom";
 import { getAllCategories, getProduct, updateProduct } from "./helper/adminapicall";
 import { isAuthenticated } from "../auth/helper";
+import backBtn from "./helper/backBtn";
+import adminLeftSide from "./helper/adminLeftSide";
 
 const UpdateProduct  = ({match}) => {
 	const { user, token } = isAuthenticated();
@@ -64,16 +65,6 @@ const UpdateProduct  = ({match}) => {
 			}
 		})
     };
-    
-	const backBtn = () => {
-		return (
-			<div className="mt-5">
-				<Link to="/admin/dashboard" className="btn btn-sm btn-outline-info rounded mb-3">
-					Home
-				</Link>
-			</div>
-		);
-	};
 
 	const onSubmit = e => {
 		e.preventDefault();
@@ -205,17 +196,25 @@ const UpdateProduct  = ({match}) => {
 	}, []);
 
 	return (
-			<Base
-				title="Welcome to product creation section"
-				description="Add a product"
-				className="container bg-info p-4"
-			>
-				<div className="row bg-white rounded">
-					<div className="col-md-8 offset-md-2">
-                        {successMsg()}
-                        {errorMsg()}
-						{backBtn()}
-						{updateProductForm()}
+			<Base>
+				<div className="container my-5">
+					<div className="row">
+						<div className="col-3">
+							{adminLeftSide()}
+						</div>
+						<div className="col-9">
+							<div className="card mb-4">
+								<div className="card-header">
+									Update the product
+								</div>
+								<div className="card-body">
+									{successMsg()}
+									{errorMsg()}
+									{backBtn()}
+									{updateProductForm()}
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</Base>

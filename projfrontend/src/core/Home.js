@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Base from "./Base";
 import "../styles.css";
 import Card from "./Card";
 import { getAllProducts } from "./helper/coreapicalls";
+import { isAuthenticated } from "../auth/helper";
 
 const Home = () => {
 	const [products, setProducts] = useState([]);
@@ -15,7 +17,7 @@ const Home = () => {
 				setError(data.error);
 			} else {
 				setProducts(data);
-				console.log("Product list fetched")
+				console.log("Product list fetched");
 			}
 		});
 	};
@@ -26,22 +28,30 @@ const Home = () => {
 
 	return (
 		<Base>
-			<section className="" style={{background: '#FFDBF5'}}>
+			<section className="" style={{ background: "#FFDBF5" }}>
 				<div className="row">
 					<div className="col-6 text-center">
-						<div className="imgContainer" style={{width: '40em'}}>
-							<img src="./imgs/store.jpg" alt="store vector"/>
+						<div className="imgContainer" style={{ width: "40em" }}>
+							<img src="./imgs/store.jpg" alt="store vector" />
 						</div>
 					</div>
 					<div className="col-6">
 						<div className="row h-100 align-items-center">
 							<div className="row mx-0">
-								<div className="display-4 font-weight-bold mb-5">Grab your favourite MERCHANDISE</div>
+								<div className="display-4 font-weight-bold mb-5">
+									Grab your favourite MERCHANDISE
+								</div>
 								<h3 className="text-muted">Quick N Easy</h3>
 							</div>
 							<div className="row mx-0">
-								<div className="btn rounded btn-lg btn-outline-primary mr-5">Get Started</div>
-								<a href="#productsSection" className="btn rounded btn-lg btn-primary">See Products <i className="fas fa-caret-down"></i></a>
+								{
+									(!isAuthenticated() && 
+										<Link to="/signup" className="btn rounded btn-lg btn-outline-primary mr-5">Get Started</Link>
+									)
+								}
+								<a href="#productsSection" className="btn rounded btn-lg btn-primary">
+									See Products <i className="fas fa-caret-down"></i>
+								</a>
 							</div>
 						</div>
 					</div>
@@ -51,17 +61,32 @@ const Home = () => {
 				<h1 className="font-weight-bold">Our products</h1>
 				<div className="project-area">
 					<div className="button-group">
-						<button type="button" data-filter="*" className="active" id="btn1">All</button>
-						<button type="button" data-filter=".popular">Popular</button>
-						<button type="button" data-filter=".latest">Latest</button>
-						<button type="button" data-filter=".following">Following</button>
-						<button type="button" data-filter=".upcoming">Upcoming</button>
+						<button type="button" data-filter="*" className="active" id="btn1">
+							All
+						</button>
+						<button type="button" data-filter=".popular">
+							Popular
+						</button>
+						<button type="button" data-filter=".latest">
+							Latest
+						</button>
+						<button type="button" data-filter=".following">
+							Following
+						</button>
+						<button type="button" data-filter=".upcoming">
+							Upcoming
+						</button>
 					</div>
 					<div className="row grid mt-5">
 						{products.map((product, index) => {
 							return (
-								<div key={index} className={`col-lg-4 col-md-6 col-sm-12 element-item mb-4 ${productTypes[Math.floor(Math.random() * productTypes.length)]}`}>
-									<Card product={product}/>
+								<div
+									key={index}
+									className={`col-lg-4 col-md-6 col-sm-12 element-item product mb-4 ${
+										productTypes[Math.floor(Math.random() * productTypes.length)]
+									}`}
+								>
+									<Card product={product} />
 								</div>
 							);
 						})}

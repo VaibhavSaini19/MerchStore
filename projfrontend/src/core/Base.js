@@ -34,7 +34,7 @@ const Base = ({
 						</div>
 						<div className="col-6 justify-content-center align-items-center">
 							<div className="imgContainer">
-								<img src="./imgs/contact2.jpg" alt="contact"/>
+								<img src="../imgs/contact2.jpg" alt="contact"/>
 							</div>
 						</div>
 					</div>

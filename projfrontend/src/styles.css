@@ -11,6 +11,11 @@ body {
 	min-height: 100vh;
 	overflow-x: hidden;
 }
+
+a:hover{
+	background: rgba(255, 255, 255, 0.15);
+}
+
 #root {
 	min-height: 100vh;
 }
@@ -32,6 +37,10 @@ body {
 }
 .active {
 	color: #0f0 !important;
+}
+
+.adminActive{
+	background: #00f;
 }
 
 section {
@@ -62,11 +71,11 @@ section {
   min-height: 100vh !important;
 }
 
-.card{
+.product .card{
   /* box-shadow: 0 0 12px rgba(0, 0, 0, 0.15); */
   transition: 0.3s;
 }
-.card:hover{
+.product .card:hover{
   transform: translateY(-10px);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);  
   transition: 0.3s;

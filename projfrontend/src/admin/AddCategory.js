@@ -1,25 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Base from "../core/Base";
 import { isAuthenticated } from "../auth/helper";
-import { Link } from "react-router-dom";
-import {createCategory} from "./helper/adminapicall";
+import {createCategory, getAllCategories} from "./helper/adminapicall";
+import adminLeftSide from "./helper/adminLeftSide";
+import backBtn from "./helper/backBtn";
 
 const AddCategory = () => {
 	const [name, setName] = useState("");
 	const [error, setError] = useState(false);
 	const [success, setSuccess] = useState(false);
+	const [categories, setCategories] = useState([]);
 
 	const { user, token } = isAuthenticated();
-
-	const backBtn = () => {
-		return (
-			<div className="mt-5">
-				<Link to="/admin/dashboard" className="btn btn-sm btn-outline-info rounded mb-3">
-					Home
-				</Link>
-			</div>
-		);
-	};
 
 	const handleChange = e => {
 		setError("");
@@ -43,11 +35,19 @@ const AddCategory = () => {
 			.catch();
 	};
 
+	const loadAllCategories = () => {
+		getAllCategories().then(data => {
+			if (!data.error) {
+				setCategories(data);
+			}
+		});
+	}
+
 	const myCategoryForm = () => {
 		return (
 			<form action="">
 				<div className="form-group">
-					<p className="lead">Enter the category</p>
+					<h5 className="lead">Enter the category</h5>
 					<input
 						onChange={handleChange}
 						type="text"
@@ -58,12 +58,24 @@ const AddCategory = () => {
 						value={name}
 					/>
 					<button onClick={onSubmit} className="btn btn-info rounded mt-3">
-						Create
+						<i className="fas fa-plus">&emsp;</i>Create
 					</button>
 				</div>
 			</form>
 		);
-    };
+	};
+	
+	const productList = () => {
+		return (
+			<ul className="list-group">
+				{categories.map((cat, index) => {
+					return (
+						<li className="list-group-item">{cat.name}</li>
+					)
+				})}
+			</ul>
+		)
+	}
     
     const successMsg = () => {
         if(success){
@@ -85,20 +97,40 @@ const AddCategory = () => {
                 </div>
             )
         }
-    }
+	}
+	
+	useEffect(() => {
+		loadAllCategories();
+	}, [])
 
 	return (
-		<Base
-			title="Create a Category"
-			description="Add a new category for T-shirts"
-			className="container bg-info p-4"
-		>
-			<div className="row bg-white rounded">
-				<div className="col-md-8 offset-md-2">
-                    {successMsg()}
-                    {errorMsg()}
-					{backBtn()}
-					{myCategoryForm()}
+		<Base>
+			<div className="container my-5">
+				<div className="row bg-white rounded">
+					<div className="col-3">
+						{adminLeftSide()}
+					</div>
+					<div className="col-9">
+						<div className="card mb-4">
+							<div className="card-header font-weight-bold">
+								Create a new category here
+							</div>
+							<div className="card-body">
+								{successMsg()}
+								{errorMsg()}
+								{backBtn()}
+								<div className="row">
+									<div className="col-6">
+										{myCategoryForm()}
+									</div>
+									<div className="col-6">
+										<h5>Exsisting categories:</h5>
+										{productList()}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</Base>

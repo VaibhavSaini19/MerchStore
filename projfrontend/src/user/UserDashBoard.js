@@ -3,8 +3,10 @@ import Base from "../core/Base";
 
 const UserDashBoard = () => {
 	return (
-		<Base title="UserDashBoard Page">
-			<h1>UserDashBoard Page</h1>
+		<Base>
+			<div className="container">
+				<div className="row"></div>
+			</div>
 		</Base>
 	);
 };

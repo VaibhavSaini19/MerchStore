@@ -32,6 +32,7 @@ const Payment = ({ products, setReload = f => f, reload = undefined }) => {
 	const showBraintreeDropin = () => {
 		return (
 			<div>
+				<small>371449635398431</small>
 				{info.clientToken !== null && products ? (
 					<div>
 						<DropIn
@@ -101,7 +102,9 @@ const Payment = ({ products, setReload = f => f, reload = undefined }) => {
 
 	return (
 		<div>
-			Your total bill is: $ {getAmount()}
+			<h3 className="text-primary">
+				Your total bill is: <strong>$ {getAmount()}</strong>
+			</h3>
 			{showBraintreeDropin()}
 		</div>
 	);
