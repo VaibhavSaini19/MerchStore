@@ -9,10 +9,8 @@ const Orders = () => {
     const [orders, setOrders] = useState([])
     const {user, token} = isAuthenticated();
 
-    const userId = user._id;
-
     const loadOrders = () => {
-        getAllOrders(userId).then(data => {
+        getAllOrders(user._id, token).then(data => {
             // console.log("Orders: ", data)
             if(!data.error){
                 setOrders(data);
@@ -38,24 +36,44 @@ const Orders = () => {
                             </div>
                             <div className="card-body">
                                 {backBtn()}
-                                <ul className="list-group">
-                                    {orders && orders.map((order, index) => {
-                                        return (
-                                            <li className="list-group-item">
-                                                <h5>Status: <span className="badge badge-primary p-1">{order.status}</span></h5>
-                                                <h5>Amount: <span className="badge badge-success p-1">{order.amount}</span></h5>
-                                                <h5>Products:</h5>
-                                                <div class="btn-group" role="group" aria-label="Basic example">
-                                                    {order.products.map((product, ind) => {
-                                                        return (
-                                                            <button type="button" class="btn btn-info">{product.name}</button>
-                                                            )
-                                                    })}
-                                                </div>
-                                            </li>
-                                        )
-                                    })}
-                                </ul>
+                                <table className="table table-bordered table-hover table-striped text-center ">
+                                    <thead className="table-success">
+                                        <tr>
+                                            <td scope="col">
+                                                <button class="btn bg-light text-primary">
+                                                    <strong>Status</strong>
+                                                </button>
+                                            </td>
+                                            <td scope="col">
+                                                <button class="btn bg-light text-primary">
+                                                    <strong>Amount</strong>
+                                                </button>
+                                            </td>
+                                            <td scope="col-6">
+                                                <button class="btn bg-light text-primary">
+                                                    <strong>Products</strong>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {orders && orders.map((order, index) => {
+                                            return (
+                                                <tr>
+                                                    <td>{order.status}</td>
+                                                    <td>$ {order.amount}</td>
+                                                    <td>
+                                                        {order.products.map((product, ind) => {
+                                                            return (
+                                                                <button type="button" class="btn btn-outline-primary mx-1">{product.name}</button>
+                                                                )
+                                                            })}
+                                                    </td>
+                                                </tr>
+                                                )
+                                            })}
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

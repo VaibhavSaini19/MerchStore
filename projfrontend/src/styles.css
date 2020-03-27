@@ -4,6 +4,7 @@
 	padding: 0;
 	margin: 0;
 	font-family: "Montserrat", sans-serif;
+	scroll-behavior: smooth;
 }
 
 body {
@@ -12,7 +13,7 @@ body {
 	overflow-x: hidden;
 }
 
-a:hover{
+a:hover {
 	background: rgba(255, 255, 255, 0.15);
 }
 
@@ -28,7 +29,7 @@ a:hover{
 #base .content {
 	flex-grow: 1;
 }
-.imgContainer{
+.imgContainer {
 	margin: 0 auto;
 }
 .imgContainer img {
@@ -39,44 +40,44 @@ a:hover{
 	color: #0f0 !important;
 }
 
-.adminActive{
+.adminActive {
 	background: #00f;
 }
 
 section {
-  height: 100%;
+	height: 100%;
 }
-.content{
-  min-height: 75vh;
+.content {
+	min-height: 75vh;
 }
 
 /* -----------------      Products */
-.project-area {
+.products-area {
 	padding: 4rem 0;
 }
-.project-area .button-group button {
+.products-area .button-group button {
 	background: transparent;
 	border: none;
 	font-weight: 500;
 	text-transform: uppercase;
-  /* background: #55efc4; */
-  background: #00b894;
-  margin: 0 1rem 0 0;
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  color: white;
-  outline: none;
+	/* background: #55efc4; */
+	background: #00b894;
+	margin: 0 1rem 0 0;
+	padding: 0.5rem 1rem;
+	border-radius: 10px;
+	color: white;
+	outline: none;
 }
-.project-area .grid{
-  min-height: 100vh !important;
+.products-area .grid {
+	min-height: 100vh !important;
 }
 
-.product .card{
-  /* box-shadow: 0 0 12px rgba(0, 0, 0, 0.15); */
-  transition: 0.3s;
+.product .card {
+	/* box-shadow: 0 0 12px rgba(0, 0, 0, 0.15); */
+	transition: 0.3s;
 }
-.product .card:hover{
-  transform: translateY(-10px);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);  
-  transition: 0.3s;
+.product .card:hover {
+	transform: translateY(-10px);
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+	transition: 0.3s;
 }

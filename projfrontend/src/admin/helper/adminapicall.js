@@ -3,6 +3,7 @@ import { API } from "../../backend";
 import React from "react";
 
 // Category calls
+
 export const createCategory = (userId, token, category) => {
 	return fetch(`${API}/category/create/${userId}`, {
 		method: "POST",
@@ -118,9 +119,13 @@ export const deleteProduct = (productId, userId, token) => {
 
 // Order calls
 
-export const getAllOrders = userId => {
+export const getAllOrders = (userId, token) => {
 	return fetch(`${API}/order/all/${userId}`, {
-		method: "GET"
+		method: "GET",
+		headers: {
+			Accept: "application/json",
+			Authorization: `Bearer ${token}`
+		}
 	})
 		.then(res => {
 			return res.json();

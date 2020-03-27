@@ -1,26 +1,24 @@
-
 const loadIsotope = () => {
-    setTimeout(() => {
-        let $btns = $('.project-area .button-group button');
-        $btns.click(e => {
-            $('.project-area .button-group button').removeClass('active');
-            e.target.classList.add('active');
+	setTimeout(() => {
+		let $btns = $(".products-area .button-group button");
+		$btns.click(e => {
+			$(".products-area .button-group button").removeClass("active");
+			e.target.classList.add("active");
 
-            let selector = $(e.target).attr('data-filter');
-            $('.project-area .grid').isotope({
-                filter: selector
-            });
+			let selector = $(e.target).attr("data-filter");
+			$(".products-area .grid").isotope({
+				filter: selector
+			});
 
-            return false;
-        })
+			return false;
+		});
 
-        $('.project-area .button-group #btn1').trigger('click'); 
-        console.log("Isotope filter loaded");
-    }, 1000);
+		$(".products-area .button-group #btn1").trigger("click");
+		console.log("Isotope filter loaded");
+	}, 1000);
 };
 $(document).ready(loadIsotope());
 
-window.addEventListener('click', function(){
-    loadIsotope();
-})
-
+window.addEventListener("click", function() {
+	loadIsotope();
+});

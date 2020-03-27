@@ -66,7 +66,7 @@ const ManageProducts = () => {
 													<div className="col-2">
 														<small>({product.category.name})</small>
 													</div>
-													<div className="col-3">
+													<div className="col-3 text-right">
 														<Link className="btn btn-success rounded" to={`/admin/product/update/${product._id}`}>
 															<i className="fas fa-edit">&emsp;</i>Update
 														</Link>

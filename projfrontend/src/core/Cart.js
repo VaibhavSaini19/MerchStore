@@ -36,7 +36,7 @@ const Cart = () => {
 	return (
 		<Base>
 			<div className="container rounded border py-5 my-5">
-				<div className="row h-100 text-center justify-content-center align-items-center">
+				<div className="row h-100 text-center justify-content-center ">
 					<div className="col-4">{
 						products.length > 0 ? 
 						loadAllProducts(products) : 

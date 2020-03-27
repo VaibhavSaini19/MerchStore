@@ -13,7 +13,18 @@ const currentTab = (history, path) => {
 const Menu = ({ history }) => {
 	return (
 		<nav className="navbar navbar-dark bg-dark sticky-top justify-content-between py-3">
-			<a className="navbar-brand text-white">Navbar</a>
+			<NavLink to="/" className="navbar-brand text-white ml-1 px-4" style={{cursor: 'pointer'}}>
+				<div className="row h-100 align-items-center">
+					<div className="imgContainer" style={{width: '2rem'}}>
+						<img src="../imgs/logo.png" alt="logo"/>
+					</div>
+					<span>&nbsp;MerchStore</span>
+				</div>
+			</NavLink>
+			<form className="form-inline">
+				<input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+				<button className="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+			</form>
 			<ul className="nav bg-dark">
 				<li className="nav-item mx-2">
 					<NavLink activeClass="active" exact className="nav-link text-white font-weight-bold" to="/">
