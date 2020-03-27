@@ -9,7 +9,6 @@ const { getOrderById, createOrder, getAllOrders, getOrderStatus, updateStatus } 
 router.param("userId", getUserById);
 router.param("orderId", getOrderById);
 
-router.get("/order/all/:userId", getAllOrders);
 router.get("/order/all/:userId", isSignedIn, isAuthenticated, isAdmin, getAllOrders);
 router.get("/order/status/:userId", isSignedIn, isAuthenticated, isAdmin, getOrderStatus);
 
